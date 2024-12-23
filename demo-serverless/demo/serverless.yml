@@ -11,15 +11,24 @@ provider:
 plugins:
   - serverless-offline
 functions:
-  hello:
-    handler: handler.hello
+  app: #
+    handler: server.handler
     events:
+      - httpApi:
+          path: /{params+}
+          method: ANY
       - httpApi:
           path: /
-          method: get
-  params:
-    handler: handler.params
-    events:
-      - httpApi:
-          path: /api/{id}
-          method: get
+          method: ANY
+  # hello:
+  #   handler: handler.hello
+  #   events:
+  #     - httpApi:
+  #         path: /
+  #         method: get
+  # params:
+  #   handler: handler.params
+  #   events:
+  #     - httpApi:
+  #         path: /api/{id}
+  #         method: get
